@@ -148,3 +148,6 @@ write /sys/module/msm_hotplug/fast_lane_load 95
 write /sys/module/msm_hotplug/big_core_up_delay 0
 write /sys/module/msm_hotplug/io_is_busy 1
 write /sys/module/msm_hotplug/load_levels "3 160 100"
+
+# configure fingerprint boost
+write /sys/bus/spi/drivers/fpc1020/spi1.2/fingerprint_unlock_boost 0
