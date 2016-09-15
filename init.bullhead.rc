@@ -110,6 +110,7 @@ on boot
     chown system system /sys/bus/spi/drivers/fpc1020/spi1.2/clk_enable
     chown system system /sys/bus/spi/drivers/fpc1020/spi1.2/wakeup_enable
     chown system system /sys/bus/spi/drivers/fpc1020/spi1.2/irq
+    chown system system /sys/bus/spi/drivers/fpc1020/spi1.2/fingerprint_unlock_boost
 
     # create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
