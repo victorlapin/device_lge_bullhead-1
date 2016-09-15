@@ -24,3 +24,7 @@ allow init-power-sh sysfs:file rw_file_perms;
 
 # execute toybox/toolbox
 allow init-power-sh toolbox_exec:file rx_file_perms;
+
+# allow writes to fingerprint_unlock_boost
+allow init-power-sh sysfs_devices_fingerprint:dir r_dir_perms;
+allow init-power-sh sysfs_devices_fingerprint:file w_file_perms;
