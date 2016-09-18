@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Include YAOSP telephony configuration
+include vendor/yaosp/configs/yaosp_phone.mk
+
 # Sample: This is where we'd set a backup provider if we had one
 # $(call inherit-product, device/sample/products/backup_overlay.mk)
 
