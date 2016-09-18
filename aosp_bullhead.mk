@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-# Include YAOSP telephony configuration
-include vendor/yaosp/configs/yaosp_phone.mk
-
 # Sample: This is where we'd set a backup provider if we had one
 # $(call inherit-product, device/sample/products/backup_overlay.mk)
 
@@ -37,6 +34,9 @@ PRODUCT_BRAND := Android
 PRODUCT_MODEL := Nexus 5X
 PRODUCT_MANUFACTURER := LGE
 PRODUCT_RESTRICT_VENDOR_FILES := false
+
+# Include YAOSP telephony configuration
+include vendor/yaosp/configs/yaosp_phone.mk
 
 $(call inherit-product, device/lge/bullhead/device.mk)
 $(call inherit-product-if-exists, vendor/lge/bullhead/device-vendor.mk)
