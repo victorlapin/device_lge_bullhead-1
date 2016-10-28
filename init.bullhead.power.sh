@@ -135,7 +135,7 @@ write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 5
 # configure msm_hotplug
 write /sys/module/msm_hotplug/msm_enabled 1
 write /sys/module/msm_hotplug/update_rate 200
-write /sys/module/msm_hotplug/min_cpus_online 1
+write /sys/module/msm_hotplug/min_cpus_online 2
 write /sys/module/msm_hotplug/max_cpus_online 4
 write /sys/module/msm_hotplug/max_cpus_online_susp 2
 write /sys/module/msm_hotplug/offline_load 0
