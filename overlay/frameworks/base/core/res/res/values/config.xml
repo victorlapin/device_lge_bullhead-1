@@ -385,4 +385,6 @@
         <item>"/system/framework/arm64/boot-core-libart.oat"</item>
    </string-array>
 
+   <!-- Battery fast charge (in microwatt) -->
+   <integer name="config_chargingFastThreshold">6500000</integer>
 </resources>
