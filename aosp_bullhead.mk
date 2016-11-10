@@ -44,3 +44,6 @@ $(call inherit-product-if-exists, vendor/lge/bullhead/device-vendor.mk)
 PRODUCT_PACKAGES += \
     Launcher3
 
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    BUILD_FINGERPRINT=google/bullhead/bullhead:7.0/NRD91N/3318108:user/release-keys \
+    PRIVATE_BUILD_DESC="bullhead-user 7.0 NRD91N 3318108 release-keys"
