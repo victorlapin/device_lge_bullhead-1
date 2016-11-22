@@ -22,15 +22,6 @@
 # Enable support for chinook sensorhub
 TARGET_USES_CHINOOK_SENSORHUB := false
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-  LOCAL_KERNEL := device/lge/bullhead-kernel/Image.gz-dtb
-else
-  LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES := \
-    $(LOCAL_KERNEL):kernel
-
 PRODUCT_COPY_FILES += \
     device/lge/bullhead/init.bullhead.rc:root/init.bullhead.rc \
     device/lge/bullhead/init.bullhead.usb.rc:root/init.bullhead.usb.rc \
@@ -221,7 +212,8 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint Sensor
 PRODUCT_PACKAGES += \
-    fingerprint.bullhead
+    fingerprint.bullhead \
+    fingerprintd
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
@@ -275,6 +267,10 @@ PRODUCT_PACKAGES += \
 
 DEVICE_PACKAGE_OVERLAYS := \
     device/lge/bullhead/overlay
+
+# Mobile Data provision prop
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.com.android.prov_mobiledata=false
 
 # Enable AAC 5.1 output
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -432,6 +428,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.tnr.preview=0 \
     persist.camera.tnr.video=0
 
+# Enable camera EIS		
+# eis.enable: enables electronic image stabilization		
+# is_type: sets image stabilization type
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.eis.enable=1 \
+    persist.camera.is_type=4
+
 # Incoming number (b/23529711)
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.redir_party_num=0
@@ -459,11 +462,6 @@ PRODUCT_COPY_FILES += \
     device/lge/bullhead/init.bullhead.misc.rc.user:root/init.bullhead.misc.rc
 endif
 
-# setup dm-verity configs.
-PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc.0/f9824900.sdhci/by-name/system
-PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/platform/soc.0/f9824900.sdhci/by-name/vendor
-$(call inherit-product, build/target/product/verity.mk)
-
 # OEM Unlock reporting
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.oem_unlock_supported=1
@@ -481,6 +479,13 @@ endif
 
 # setup dalvik vm configs.
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+
+# facelock properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.facelock.black_timeout=700 \
+    ro.facelock.det_timeout=2500 \
+    ro.facelock.rec_timeout=3500 \
+    ro.facelock.est_max_time=600
 
 $(call inherit-product-if-exists, hardware/qcom/msm8994/msm8992.mk)
 $(call inherit-product-if-exists, vendor/qcom/gpu/msm8994/msm8994-gpu-vendor.mk)
