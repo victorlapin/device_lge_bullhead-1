@@ -85,7 +85,7 @@ write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 1
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "70 960000:80 1248000:85"
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 80000
-write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 633600
+write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 384000
 
 # restore A57's max
 copy /sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_max_freq /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
@@ -99,6 +99,10 @@ write /sys/module/msm_performance/parameters/cpu_max_freq "4:4294967295 5:429496
 # input boost configuration
 write /sys/module/cpu_boost/parameters/input_boost_freq "0:960000"
 write /sys/module/cpu_boost/parameters/input_boost_ms 40
+
+# Switch to row scheduler and increase readahead buffer to 1024Kb
+write /sys/block/mmcblk0/queue/scheduler row
+write /sys/block/mmcblk0/bdi/read_ahead_kb 1024
 
 # Setting B.L scheduler parameters
 write /proc/sys/kernel/sched_migration_fixup 1

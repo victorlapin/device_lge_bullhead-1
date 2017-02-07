@@ -37,8 +37,14 @@ BOARD_RAMDISK_OFFSET     := 0x02000000
 
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bullhead boot_cpus=0-5
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 msm_poweroff.download_mode=0
+#BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+TARGET_KERNEL_CONFIG := bullhead_defconfig
+TARGET_KERNEL_SOURCE := kernel/lge/bullhead
+KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
 
 BOARD_USES_ALSA_AUDIO := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
@@ -108,6 +114,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 11649679360
 BOARD_CACHEIMAGE_PARTITION_SIZE := 100663296
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
 
 # Build a separate vendor.img
 TARGET_COPY_OUT_VENDOR := vendor
@@ -143,8 +150,6 @@ NXP_CHIP_TYPE := 2
 
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
-
-USE_CLANG_PLATFORM_BUILD := true
 
 USE_CLANG_PLATFORM_BUILD := true
 
